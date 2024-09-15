@@ -17,8 +17,8 @@
   ],
   "paths": {
     "/hello": {
-      "get": {
-        "operationId": "HelloService_sayHello",
+      "post": {
+        "operationId": "HelloService_SayHello",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -35,10 +35,12 @@
         },
         "parameters": [
           {
-            "name": "name",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/protoHelloRequest"
+            }
           }
         ],
         "tags": [
@@ -48,6 +50,14 @@
     }
   },
   "definitions": {
+    "protoHelloRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "protoHelloResponse": {
       "type": "object",
       "properties": {

@@ -13,12 +13,14 @@ message HelloResponse {
 }
 
 service HelloService {
-  rpc sayHello(HelloRequest) returns (HelloResponse) {
+  rpc SayHello(HelloRequest) returns (HelloResponse) {
     option (google.api.http) = {
-      get: "/hello",
+      post: "/hello",
+      body: "*"
     };
   }
 }
 
 // Generate protobuf
 // protoc ./proto/hello.proto --go_out=.
+// grpcurl -plaintext localhost:50051 proto.helloService/SayHello -d '{"name":"world"}'
