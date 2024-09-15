@@ -20,7 +20,3 @@ service HelloService {
     };
   }
 }
-
-// Generate protobuf
-// protoc ./proto/hello.proto --go_out=.
-// grpcurl -plaintext localhost:50051 proto.helloService/SayHello -d '{"name":"world"}'

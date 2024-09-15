@@ -8,3 +8,8 @@ dependencies for swagger docs
 ```aiignore
 go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 ```
+
+post request
+```aiignore
+curl -X POST -d '{"name": "world"}' http://localhost:8080/hello
+```
