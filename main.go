@@ -35,16 +35,16 @@ func RegisterGatewayServer(ctx context.Context, grpcEndpoint string) (*runtime.S
 	//			},
 	//		}),
 	//	)
-	mux := runtime.NewServeMux(
-		runtime.WithMarshalerOption("application/protobuf", &runtime.ProtoMarshaller{}),
+	customMux := runtime.NewServeMux(
+		runtime.WithMarshalerOption("application/x-binary", &runtime.ProtoMarshaller{}),
 	)
 	// Register the Greeter service with the HTTP server
 	opts := []grpc.DialOption{grpc.WithInsecure()}
-	err := pb.RegisterHelloServiceHandlerFromEndpoint(ctx, mux, grpcEndpoint, opts)
+	err := pb.RegisterHelloServiceHandlerFromEndpoint(ctx, customMux, grpcEndpoint, opts)
 	if err != nil {
 		return nil, err
 	}
-	return mux, nil
+	return customMux, nil
 }
 
 func main() {

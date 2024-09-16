@@ -10,6 +10,7 @@ package gen
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 
@@ -35,6 +36,7 @@ func request_HelloService_SayHello_0(ctx context.Context, marshaler runtime.Mars
 	var protoReq HelloRequest
 	var metadata runtime.ServerMetadata
 
+	fmt.Printf("Content of lenght %s Received.", req.ContentLength)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
